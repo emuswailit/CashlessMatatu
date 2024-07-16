@@ -43,14 +43,13 @@ const TripsScreen = () => {
   const [istripModalVisible, setistripModalVisible] = useState(false);
   const [isticketModalVisible, setisticketModalVisible] = useState(false);
   const [currentTrip, setcurrentTrip] = useState();
-  const getSaccoProfileApi = useApi(transportApi.transportActions);
+
   const getPaymentMethodsApi = useApi(transportApi.transportActions);
   const [tickets, setTickets] = useState([]);
   const [destinations, setdestinations] = useState([]);
   const [selectedDestination, setselectedDestination] = useState();
   const [numberOfTickets, setnumberOfTickets] = useState(0);
   const [selectedDestinationFare, setselectedDestinationFare] = useState(0.0);
-  const [mobileMoneyPhone, setmobileMoneyPhone] = useState("");
   const [totalToPay, settotalToPay] = useState(
     selectedDestinationFare * numberOfTickets
   );
@@ -63,11 +62,33 @@ const TripsScreen = () => {
     });
   };
 
+  //Sacco profile
+  const getSaccoProfileApi = useApi(transportApi.transportActions);
   const getSaccoProfile = async () => {
     await getSaccoProfileApi.request({
       action: "GetSaccoProfile",
     });
   };
+
+  useEffect(() => {
+    if (getSaccoProfileApi.data) {
+      console.log("getSaccoProfileApi.data", getSaccoProfileApi.data);
+      if (
+        getSaccoProfileApi.data &&
+        getSaccoProfileApi.data.sacco_personnel_profile &&
+        getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle
+      ) {
+        setconductedVehicle(
+          getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle
+        );
+        setroutes(
+          getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle
+            .routes
+        );
+      }
+    }
+    console.log("getSaccoProfileApi.data", getSaccoProfileApi.data);
+  }, [getSaccoProfileApi.data]);
 
   useEffect(() => {
     getSaccoProfile();
@@ -85,17 +106,23 @@ const TripsScreen = () => {
         setconductedVehicle(
           getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle
         );
+        setroutes(
+          getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle
+            .routes
+        );
       }
     }
   }, [getSaccoProfileApi.data]);
 
   const getCurrentTripApi = useApi(transportApi.transportActions);
 
-  const getCurrentTrip = async (conductedVehicle) => {
-    await getCurrentTripApi.request({
-      action: "GetCurrentTrip",
-      registration: conductedVehicle.registration,
-    });
+  const getCurrentVehicleTrip = async (conductedVehicle) => {
+    if (conductedVehicle && conductedVehicle.registration) {
+      await getCurrentTripApi.request({
+        action: "GetCurrentTrip",
+        registration: conductedVehicle.registration,
+      });
+    }
   };
 
   useEffect(() => {
@@ -134,7 +161,7 @@ const TripsScreen = () => {
 
   useInterval(async () => {
     if (conductedVehicle !== null) {
-      getCurrentTrip(conductedVehicle);
+      getCurrentVehicleTrip(conductedVehicle);
     }
   }, 20000);
 
@@ -233,12 +260,13 @@ const TripsScreen = () => {
 
   useEffect(() => {
     if (createTicketsApi.data && createTicketsApi.data.response_code === 0) {
-      getCurrentTrip(conductedVehicle);
+      getCurrentVehicleTrip(conductedVehicle);
       setisticketModalVisible(false);
     }
 
     if (createTicketsApi.data && createTicketsApi.data.response_code === 1) {
-      toast.error(createTicketsApi.data.response_message);
+      // toast.error(createTicketsApi.data.response_message);
+      console.log("Error here");
     }
 
     if (createTicketsApi.data && createTicketsApi.data.errors) {
@@ -301,8 +329,25 @@ const TripsScreen = () => {
     },
   });
 
+  const handleFilterRoutes = (e) => {
+    const search_param = e.toLowerCase();
+
+    if (search_param && search_param !== "") {
+      setroutes(
+        conductedVehicle &&
+          conductedVehicle.routes.filter((x) =>
+            x.title.toLowerCase().includes(search_param)
+          )
+      );
+    } else {
+      setroutes(
+        getSaccoProfileApi.data.sacco_personnel_profile.conducted_vehicle.routes
+      );
+    }
+  };
+
   const onRouteSearchTextChanged = (text) => {
-    // handleFilterProducts(text);
+    handleFilterRoutes(text);
     // searchProduct(text);
   };
 
@@ -369,6 +414,8 @@ const TripsScreen = () => {
     }
   };
 
+  const [routes, setroutes] = useState([]);
+
   return getSaccoProfileApi.loading ? (
     <ActivityIndicator
       size="large"
@@ -392,7 +439,7 @@ const TripsScreen = () => {
                 selectedItem={selectedRoute}
                 name="route"
                 onSelectItem={handleSelectRoute}
-                data={conductedVehicle ? conductedVehicle.routes : []}
+                data={routes}
                 placeholder={selectedRoute ? selectedRoute : "Select route"}
                 onSearchTextChanged={onRouteSearchTextChanged}
               />
@@ -405,13 +452,17 @@ const TripsScreen = () => {
               />
 
               <TimeField
+                backgroundColor="white"
+                color="black"
                 name="departure_time"
                 label="Departure time"
                 placeholder="Select departure time"
               />
 
               <SubmitButton
-                label="Save"
+                backgroundColor="white"
+                title="Save"
+                color="black"
                 contentContainerStyle={{
                   height: 55,
                   borderRadius: SIZES.radius,
@@ -443,6 +494,9 @@ const TripsScreen = () => {
         <View style={{ flex: 1 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View className="flex justify-center items-center my-3">
+              <Text className="text-xl font-bold">
+                {currentTrip && currentTrip.route_title}
+              </Text>
               {selectedDestinationDetails ? (
                 <Text className="text-xl font-bold">
                   {selectedDestinationDetails.value}
@@ -567,9 +621,6 @@ const TripsScreen = () => {
       {currentTrip ? (
         <View>
           <Text className="text-xl text-center mt-1">
-            {conductedVehicle.registration}
-          </Text>
-          <Text className="text-xl text-center mt-1">
             {currentTrip.route_title}
           </Text>
           <View className="flex flex-row justify-around items-center">
@@ -583,15 +634,15 @@ const TripsScreen = () => {
           <View className="flex flex-row w-full justify-between">
             <View>
               <AppButton
-                title="Create New Trip"
-                width="100%"
+                title="New Trip"
+                width={150}
                 onPress={() => handleCreateNewTrip()}
               />
             </View>
             <View>
               <AppButton
-                title="Create New Ticket"
-                width={320}
+                title="New Ticket"
+                width={150}
                 onPress={() => handleShowTicketModal()}
               />
             </View>

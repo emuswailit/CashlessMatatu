@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { COLORS } from "../constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AccountsNavigator from "./AccountsNavigator";
-import VehiclesNavigator from "./VehiclesNavigator";
+import TicketsNavigator from "./TicketsNavigator";
 
 const Tab = createBottomTabNavigator();
 export default AppNavigator = () => (
@@ -33,7 +33,7 @@ export default AppNavigator = () => (
 
     <Tab.Screen
       name="Tickets"
-      component={VehiclesNavigator}
+      component={TicketsNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <MaterialCommunityIcons

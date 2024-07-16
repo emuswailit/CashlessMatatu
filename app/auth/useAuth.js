@@ -5,6 +5,7 @@ import AuthContext from "./context";
 import authStorage from "./storage";
 
 export default useAuth = () => {
+
   const {
     user,
     setUser,

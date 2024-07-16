@@ -136,7 +136,7 @@ function CustomPickerSingleAsyncItem({
                     setFieldValue(name, item);
                   }}
                   description={item.description}
-                  subTitle={`${item.subTitle}`}
+                  subTitle={null}
                   title={item.title}
                   image={item.image}
                   detail1={item.detail1}

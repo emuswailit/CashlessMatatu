@@ -6,9 +6,7 @@ import { navigationRef } from "./app/navigation/rootNavigation";
 import authStorage from "./app/auth/storage";
 import { useFonts } from "expo-font";
 import AuthContext from "./app/auth/context";
-import * as SplashScreen from "expo-splash-screen";
 import navigationTheme from "./app/navigation/navigationTheme";
-import { ActivityIndicator, Text, View } from "react-native";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 
@@ -65,6 +63,8 @@ export default function App() {
         value={{
           user,
           setUser,
+          rawToken,
+          setRawToken,
         }}
       >
         <NavigationContainer ref={navigationRef} theme={navigationTheme}>

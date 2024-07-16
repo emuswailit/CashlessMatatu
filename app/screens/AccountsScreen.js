@@ -3,37 +3,37 @@ import { StyleSheet, View, FlatList, SafeAreaView, Text } from "react-native";
 
 import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
-import Icon from "../components/Icon";
-
 import { COLORS, FONTS } from "../constants";
 import useApi from "../hooks/useApi";
 import usersApi from "../api/usersApi";
+import CardFullWidthWithChevron from "../components/cards/CardFullWidthWithChevron";
+import useAuth from "../auth/useAuth";
 
 const menuItems = [
   {
-    title: "My Profile",
+    title: "My Vehicles",
     icon: {
       name: "format-list-bulleted",
-      backgroundColor: colors.primary,
+      backgroundColor: colors.white,
     },
-    targetScreen: "Profile",
+    targetScreen: "Vehicles",
   },
   {
-    title: "KYC Documents",
+    title: "My Wallet",
     icon: {
-      name: "format-list-bulleted",
-      backgroundColor: colors.primary,
+      name: "home",
+      backgroundColor: colors.white,
     },
 
-    targetScreen: "UserKYCDocumentsScreen",
+    targetScreen: "Wallet",
   },
   {
-    title: "Profile Pictures",
+    title: "My Sacco",
     icon: {
       name: "email",
       backgroundColor: colors.secondary,
     },
-    targetScreen: "UserProfilePicturesScreen",
+    targetScreen: "Sacco",
   },
 ];
 
@@ -110,23 +110,24 @@ function AccountScreen({ navigation }) {
           keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
-            <ListItem
+            <CardFullWidthWithChevron
               onPress={() => navigation.navigate(item.targetScreen, profile)}
-              title={item.title}
-              IconComponent={
-                <Icon
-                  name={item.icon.name}
-                  backgroundColor={item.icon.backgroundColor}
-                />
-              }
+              item={item}
             />
           )}
         />
       </View>
-      <ListItem
-        onPress={() => logOut()}
-        title="Log Out"
-        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+
+      <CardFullWidthWithChevron
+        onPress={logOut}
+        item={{
+          title: "Sign out",
+          icon: {
+            name: "logout",
+            backgroundColor: colors.white,
+          },
+          targetScreen: "Login",
+        }}
       />
     </SafeAreaView>
   );
