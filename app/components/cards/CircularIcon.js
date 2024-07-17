@@ -3,7 +3,7 @@ import React from "react";
 import Icon from "../Icon";
 import { COLORS } from "../../constants";
 
-const CircularIcon = ({ name, backgroundColor }) => {
+const CircularIcon = ({ name, backgroundColor, icon_category }) => {
   return (
     <View
       style={{
@@ -17,6 +17,7 @@ const CircularIcon = ({ name, backgroundColor }) => {
       }}
     >
       <Icon
+        icon_category={icon_category}
         className="my-2 border-gray-400"
         name={name}
         size={30}

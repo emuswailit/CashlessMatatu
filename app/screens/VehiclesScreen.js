@@ -7,7 +7,6 @@ import CardFullWidthWithChevron from "../components/cards/CardFullWidthWithChevr
 
 const VehiclesScreen = ({ navigation, route }) => {
   const forwardedUser = route.params;
-  console.log("vx c", forwardedUser);
 
   const [conductedVehicles, setconductedVehicles] = useState([]);
   const [administeredVehicles, setadministeredVehicles] = useState([]);
@@ -26,7 +25,6 @@ const VehiclesScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     if (getSaccoProfileApi.data) {
-      console.log("getSaccoProfileApi.data", getSaccoProfileApi.data);
       if (
         getSaccoProfileApi.data &&
         getSaccoProfileApi.data.sacco_personnel_profile &&
@@ -47,7 +45,6 @@ const VehiclesScreen = ({ navigation, route }) => {
         );
       }
     }
-    console.log("getSaccoProfileApi.data 2", getSaccoProfileApi.data);
   }, [getSaccoProfileApi.data]);
   return (
     <SafeAreaView className="flex-1   bg-white">

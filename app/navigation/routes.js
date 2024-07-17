@@ -1,5 +1,10 @@
 export default Object.freeze({
   TRIPS: "Trips",
+  PAYOUTS_AIRTEL: "PayoutsToAirtel",
+  PAYOUTS_BANK: "PayoutsToBank",
+  PAYOUTS_MPESA: "PayoutsToMpesa",
+  PAYOUTS_PAYBILL: "PayoutsToPaybill",
+  PAYOUTS_TILL: "PayoutsToTill",
   VEHICLES: "Vehicles",
   VEHICLE_DETAILS: "VehicleDetails",
   VEHICLE_COLLECTION: "VehicleCollection",

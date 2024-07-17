@@ -10,7 +10,11 @@ const CardFullWidthWithChevron = ({ item, backgroundColor, onPress }) => {
       onPress={onPress}
       className="flex-1 flex-row my-2 items-center text-start justify-around w-full h-14 max-h-14 shadow-md shadow-slate-300 rounded-sm bg-white mx-1"
     >
-      <CircularIcon backgroundColor={backgroundColor} name={item.icon.name} />
+      <CircularIcon
+        backgroundColor={backgroundColor}
+        icon_category={item.icon_category}
+        name={item.icon.name}
+      />
       <Text className="text-left items-start font-medium text-sm">
         {item.title}
       </Text>

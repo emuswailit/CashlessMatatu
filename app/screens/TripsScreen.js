@@ -72,7 +72,6 @@ const TripsScreen = () => {
 
   useEffect(() => {
     if (getSaccoProfileApi.data) {
-      console.log("getSaccoProfileApi.data", getSaccoProfileApi.data);
       if (
         getSaccoProfileApi.data &&
         getSaccoProfileApi.data.sacco_personnel_profile &&
@@ -143,12 +142,11 @@ const TripsScreen = () => {
         )
       );
     }
-    console.log("getCurrentTripApi.data", getCurrentTripApi.data);
   }, [getCurrentTripApi.data]);
 
   const [paymentMethods, setpaymentMethods] = useState();
   useEffect(() => {
-    if (getPaymentMethodsApi.data) {
+    if (getPaymentMethodsApi.data && getPaymentMethodsApi.data.length) {
       setpaymentMethods(
         getPaymentMethodsApi.data.map((i) => ({
           key: i.id,
@@ -156,7 +154,6 @@ const TripsScreen = () => {
         }))
       );
     }
-    console.log("getPaymentMethodsApi.data", getPaymentMethodsApi.data);
   }, [getPaymentMethodsApi.data]);
 
   useInterval(async () => {
@@ -165,16 +162,11 @@ const TripsScreen = () => {
     }
   }, 20000);
 
-  useEffect(() => {
-    console.log("selected dest", selectedDestination);
-  }, [selectedDestination]);
+  useEffect(() => {}, [selectedDestination]);
 
-  useEffect(() => {
-    console.log("selected dests", destinations);
-  }, [destinations]);
+  useEffect(() => {}, [destinations]);
 
   const handleFilter = (e) => {
-    console.log("zxxcv", e);
     const search_param = e.toLowerCase();
 
     if (search_param && search_param !== "") {
@@ -218,18 +210,12 @@ const TripsScreen = () => {
 
   useEffect(() => {
     if (createTripApi.data && createTripApi.data.trip) {
-      console.log("New trip created");
       //Pull new profile details
       getSaccoProfile();
     }
-    console.log("createTripApi.data", createTripApi.data);
   }, [createTripApi.data]);
-  const handleSubmitTicketForm = async (values) => {
-    console.log("valz", values);
-  };
+  const handleSubmitTicketForm = async (values) => {};
   const handleSubmitTripForm = async (values) => {
-    console.log("valz", values);
-
     if (conductedVehicle !== null) {
       payload = {
         action: "CreateTrip",
@@ -266,14 +252,11 @@ const TripsScreen = () => {
 
     if (createTicketsApi.data && createTicketsApi.data.response_code === 1) {
       // toast.error(createTicketsApi.data.response_message);
-      console.log("Error here");
     }
 
     if (createTicketsApi.data && createTicketsApi.data.errors) {
       setErrors(createTicketsApi.data.errors);
     }
-
-    console.log("createTicketsApi.data", createTicketsApi.data);
   }, [createTicketsApi.data]);
 
   const formik = useFormik({
@@ -295,7 +278,6 @@ const TripsScreen = () => {
       //Dispatch action
       let tickets = [];
 
-      console.log("VALZ", values);
       for (let i = 0; i < values.number_of_tickets; i++) {
         const stump = {
           trip: currentTrip.id,
@@ -314,7 +296,7 @@ const TripsScreen = () => {
 
         tickets.push(stump);
       }
-      console.log("fdfdffffffffff", tickets);
+
       const data = {
         action: "CreateBatchedTickets",
         mobile_money_phone: values.mobile_money_phone,
@@ -322,7 +304,6 @@ const TripsScreen = () => {
         payment_method: values.payment_method,
         tickets: tickets,
       };
-      console.log("tickets", tickets);
 
       createBatchedTickets(data);
       resetForm();
@@ -376,7 +357,7 @@ const TripsScreen = () => {
     }
     formik.setFieldValue("destination", selectedDestination);
 
-    console.log("ideeem", item);
+
 
     setselectedDestination(item);
   };

@@ -1543,7 +1543,7 @@
 
 "@react-native-community/datetimepicker@^8.0.1":
   version "8.2.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-8.2.0.tgz#f62ac4fc12bd527fbbe93934e6c1cfbb7ba570f3"
+  resolved "https://registry.npmjs.org/@react-native-community/datetimepicker/-/datetimepicker-8.2.0.tgz"
   integrity sha512-qrUPhiBvKGuG9Y+vOqsc56RPFcHa1SU2qbAMT0hfGkoFIj3FodE0VuPVrEa8fgy7kcD5NQmkZIKgHOBLV0+hWg==
   dependencies:
     invariant "^2.2.4"
@@ -1691,7 +1691,7 @@
 
 "@react-native/normalize-color@^2.1.0":
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native/normalize-color/-/normalize-color-2.1.0.tgz#939b87a9849e81687d3640c5efa2a486ac266f91"
+  resolved "https://registry.npmjs.org/@react-native/normalize-color/-/normalize-color-2.1.0.tgz"
   integrity sha512-Z1jQI2NpdFJCVgpY+8Dq/Bt3d+YUi1928Q+/CZm/oh66fzM0RUl54vvuXlPJKybH4pdCZey1eDTPaLHkMPNgWA==
 
 "@react-native/normalize-colors@0.74.84":
@@ -2024,7 +2024,7 @@ accepts@^1.3.7, accepts@^1.3.8, accepts@~1.3.5, accepts@~1.3.7:
 
 accordion-collapse-react-native@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/accordion-collapse-react-native/-/accordion-collapse-react-native-1.1.1.tgz#e5e3b00a2f75838f37f5b8ca19cf7d8ccad8404a"
+  resolved "https://registry.npmjs.org/accordion-collapse-react-native/-/accordion-collapse-react-native-1.1.1.tgz"
   integrity sha512-VHQkJIlcN112YCa8L16OtXHZL0RRmozYnC4sP0ONBwNcmeiqBpacafQXiekwZzXT7HVbJwdrKlcJA5241XbVdw==
   dependencies:
     lodash.get "4.4.2"
@@ -3031,7 +3031,7 @@ depd@2.0.0:
 
 deprecated-react-native-prop-types@^3.0.1:
   version "3.0.2"
-  resolved "https://registry.yarnpkg.com/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-3.0.2.tgz#e724a9837e6a7ccb778753c06ae4f79065873493"
+  resolved "https://registry.npmjs.org/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-3.0.2.tgz"
   integrity sha512-JoZY5iNM+oJlN2Ldpq0KSi0h3Nig4hlNJj5nWzWp8eL3uikMCvHwjSGPitwkEw0arL5JFra5nuGJQpXRbEjApg==
   dependencies:
     "@react-native/normalize-color" "^2.1.0"
@@ -4725,7 +4725,7 @@ lodash.debounce@^4.0.8:
 
 lodash.get@4.4.2:
   version "4.4.2"
-  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  resolved "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
   integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
 lodash.throttle@^4.1.1:
@@ -5930,7 +5930,7 @@ react-native-animatable@1.3.3:
 
 react-native-button@^3.1.0:
   version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-3.1.0.tgz#eead39fcd3656e475ef5bb0287e9b887295bae7e"
+  resolved "https://registry.npmjs.org/react-native-button/-/react-native-button-3.1.0.tgz"
   integrity sha512-z/KUH1zXHTYoGfldGRm8DKTdYO/5DgNYJDdi/kRdDesb7rx9PiM1ZMq1PUjT+/B0uy/BltJnSLhLCvs4pTL7uQ==
   dependencies:
     deprecated-react-native-prop-types "^3.0.1"
@@ -5938,7 +5938,7 @@ react-native-button@^3.1.0:
 
 react-native-dropdown-select-list@^2.0.5:
   version "2.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-dropdown-select-list/-/react-native-dropdown-select-list-2.0.5.tgz#3626b2bf9b9c5e157b02f60cf36174cde7550056"
+  resolved "https://registry.npmjs.org/react-native-dropdown-select-list/-/react-native-dropdown-select-list-2.0.5.tgz"
   integrity sha512-TepbcagQVUMB6nLuIlVU2ghRpQHAECOeZWe8K04ymW6NqbKbxuczZSDFfdCiABiiQ2dFD+8Dz65y4K7/uUEqGg==
 
 react-native-floating-label-input@^1.4.3:
@@ -5959,18 +5959,28 @@ react-native-gesture-handler@~2.16.1:
 
 react-native-modal-datetime-picker@^17.1.0:
   version "17.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-17.1.0.tgz#74291bf92b830be285752f437841f52885c90e0b"
+  resolved "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-17.1.0.tgz"
   integrity sha512-jfTwfaCLtBffYbQ+pOGFLM+J5HmUh3vb9rT0JrrQPjxzecdc8pNYreB1c96+mVuq8bDCvaCdIeuEsslTqLJL0Q==
   dependencies:
     prop-types "^15.7.2"
 
 react-native-modal@^13.0.1:
   version "13.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"
+  resolved "https://registry.npmjs.org/react-native-modal/-/react-native-modal-13.0.1.tgz"
   integrity sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
+
+react-native-otp-inputs@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-otp-inputs/-/react-native-otp-inputs-7.4.0.tgz#ea1badabdf231faee5bcb5231034911bbba49aed"
+  integrity sha512-+phHrlcQQ63VuOrHaOZze7LP9WmzUGxGMlQx2A/jhPhYkCi/5hXDjxNcWyPXCy/RFRoLX+70HNpGqTgo0mDg7Q==
+
+react-native-otp-textinput@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-otp-textinput/-/react-native-otp-textinput-1.1.6.tgz#4e3560e2e0a30849169cff4e40f3035c594a73fc"
+  integrity sha512-auj4etyrp8N2GWyWTDO2If3uMdSoMR9oSJweQYfNEYP8cJEoEHLtDJhNOBJMwTrkRG8YbYroHg3b30TOhLv9kw==
 
 react-native-paper@^5.12.3:
   version "5.12.3"

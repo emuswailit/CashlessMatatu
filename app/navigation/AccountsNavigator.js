@@ -8,6 +8,13 @@ import VehiclePayoutsScreen from "../screens/VehiclePayoutsScreen";
 import VehicleCollectionScreen from "../screens/VehicleCollectionScreen";
 import VehicleCrewScreen from "../screens/VehicleCrewScreen";
 import VehicleSubscriptionsScreen from "../screens/VehicleSubscriptionsScreen";
+import {
+  PayoutBankScreen,
+  PayoutsAirtelScreen,
+  PayoutsMpesaScreen,
+  PayoutsPaybillScreen,
+  PayoutsTillScreen,
+} from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -36,5 +43,16 @@ export default AccountNavigator = () => (
       name={routes.VEHICLE_SUBSCRIPTIONS}
       component={VehicleSubscriptionsScreen}
     />
+    <Stack.Screen
+      name={routes.PAYOUTS_AIRTEL}
+      component={PayoutsAirtelScreen}
+    />
+    <Stack.Screen name={routes.PAYOUTS_BANK} component={PayoutBankScreen} />
+    <Stack.Screen name={routes.PAYOUTS_MPESA} component={PayoutsMpesaScreen} />
+    <Stack.Screen
+      name={routes.PAYOUTS_PAYBILL}
+      component={PayoutsPaybillScreen}
+    />
+    <Stack.Screen name={routes.PAYOUTS_TILL} component={PayoutsTillScreen} />
   </Stack.Navigator>
 );

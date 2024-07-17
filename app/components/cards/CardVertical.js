@@ -1,7 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import Icon from "../Icon";
-import { COLORS } from "../../constants";
+
 import CircularIcon from "./CircularIcon";
 
 const CardVertical = ({ item, height = 96, width = 96, onPress }) => {

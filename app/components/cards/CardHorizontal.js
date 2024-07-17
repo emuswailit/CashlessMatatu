@@ -7,9 +7,9 @@ import CircularIcon from "./CircularIcon";
 const CardHorizontal = ({ item }) => {
   return (
     <TouchableOpacity className="flex-1 flex-row items-center justify-around w-24 h-24 shadow-md shadow-slate-300 rounded-sm bg-white m-1">
-      <CircularIcon name={item.icon} />
+      <CircularIcon name={item.icon.name} />
       <Text className=" w-1/2 text-start items-start font-medium text-sm">
-        {item.title}
+        "{item.title}"
       </Text>
     </TouchableOpacity>
   );

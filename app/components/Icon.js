@@ -12,7 +12,7 @@ import { COLORS } from "../constants";
 
 function Icon({
   name,
-  icon_category = "MATERIALCOMMUNITYICONS",
+  icon_category = "",
   size = 40,
   backgroundColor = COLORS.primary,
   iconColor = "#fff",
@@ -30,13 +30,14 @@ function Icon({
         alignItems: "center",
       }}
     >
-      {(icon_category === "MATERIALCOMMUNITYICONS" && (
-        <MaterialCommunityIcons
-          name={name}
-          color={iconColor}
-          size={size * 0.5}
-        />
-      )) ||
+      {icon_category === "MATERIALCOMMUNITYICONS" ||
+        (icon_category === "" && (
+          <MaterialCommunityIcons
+            name={name}
+            color={iconColor}
+            size={size * 0.5}
+          />
+        )) ||
         (icon_category === "ENTYPO" && (
           <Entypo name={name} color={iconColor} size={size * 0.5} />
         )) ||
