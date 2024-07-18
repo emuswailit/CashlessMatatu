@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, ActivityIndicator } from "react-native";
 import axios from "axios";
 import * as Yup from "yup";
 import Screen from "../components/Screen";
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../auth/useAuth";
 import useApi from "../hooks/useApi";
 import authApi from "../api/authApi";
+import { View } from "react-native-reanimated/lib/typescript/Animated";
+import { COLORS } from "../constants";
+import Modal from "react-native-modal";
 const validationSchema = Yup.object().shape({
   phone_or_email: Yup.string().required().label("Phone or Email"),
   password: Yup.string().required().min(4).label("Password"),
@@ -21,6 +24,7 @@ function LoginScreen(props) {
 
   const [loginfailed, setLoginFailed] = useState(false);
   const [userId, setUserId] = useState();
+  const [errorsModalVisible, seterrorsModalVisible] = useState(false);
   const handleSubmit = async (values) => {
     console.log("VALZ", values);
     const result = await loginApi.request(
@@ -59,10 +63,14 @@ function LoginScreen(props) {
     }
   }, [errors]);
 
-  return (
+  return loginApi.loading ? (
+    <View className="flex-1">
+      <ActivityIndicator color={COLORS.primary} size="large" />
+    </View>
+  ) : (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-
+      <Modal isVisible={istripModalVisible}></Modal>
       <Form
         initialValues={{ phone_or_email: "", password: "" }}
         onSubmit={handleSubmit}

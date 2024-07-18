@@ -12,6 +12,12 @@ import TextButton from "../../components/TextButton";
 import Modal from "react-native-modal";
 import OTPTextInput from "react-native-otp-textinput";
 
+import {
+  requestReadSMSPermission,
+  checkIfHasSMSPermission,
+  startReadSMS,
+} from "@maniac-tech/react-native-expo-read-sms";
+
 const PayoutsMpesaScreen = ({ route, navigation }) => {
   const vehicle = route.params;
   console.log("veh at mpesa", vehicle);
@@ -32,6 +38,38 @@ const PayoutsMpesaScreen = ({ route, navigation }) => {
       },
     });
   }, [navigation]);
+
+  //Read sms
+
+  const successCallbackFn = (status, sms, error) => {
+    if (status === "success") {
+      console.log("Success in success callback");
+
+      // Run a regex of your OTP Message and process it as per your application logic
+
+      if (OTPRegex.test(sms)) {
+        // OTP matched
+      }
+    } else {
+      console.log("Error in success callback");
+
+      console.log(error);
+    }
+  };
+
+  const errorCallbackFn = (status, sms, error) => {
+    console.log("Error Callback!");
+
+    console.log("Start Read SMS failed");
+  };
+
+  const checkSMSPermission = async () => {
+    const hasPermission = await checkIfHasSMSPermission();
+    console.log("SMS permission", hasPermission);
+    if (hasPermission) {
+      startReadSMS(successCallbackFn, errorCallbackFn);
+    }
+  };
 
   const [ref, setref] = useState();
   const [isOTPModalVisible, setisOTPModalVisible] = useState(false);
@@ -178,6 +216,7 @@ const PayoutsMpesaScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     getVehicleWalletBalance();
+    checkSMSPermission();
   }, []);
 
   return processAuthorizeTransactionApi.loading ||
